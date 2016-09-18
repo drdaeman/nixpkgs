@@ -1,4 +1,4 @@
-{ stdenv, lib, makeDesktopItem, makeWrapper, config
+{ stdenv, lib, makeDesktopItem, makeWrapper, config, libnotify
 
 ## various stuff that can be plugged in
 , gnash, flashplayer, hal-flash
@@ -43,7 +43,7 @@ let
       ++ lib.optional (cfg.enableBluejeans or false) bluejeans
       ++ lib.optional (cfg.enableAdobeReader or false) adobe-reader
      );
-  libs = [ ffmpeg ]
+  libs = [ ffmpeg libnotify ]
          ++ lib.optionals (cfg.enableQuakeLive or false)
          (with xorg; [ stdenv.cc libX11 libXxf86dga libXxf86vm libXext libXt alsaLib zlib ])
          ++ lib.optional (enableAdobeFlash && (cfg.enableAdobeFlashDRM or false)) hal-flash
