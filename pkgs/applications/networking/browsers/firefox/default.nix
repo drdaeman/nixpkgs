@@ -45,6 +45,8 @@ common = { pname, version, sha512 }: stdenv.mkDerivation rec {
 
   nativeBuildInputs = [autoconf213 which];
 
+  patches = [ ./bug1233086.patch ];
+
   configureFlags =
     [ "--enable-application=browser"
       "--with-system-jpeg"
@@ -105,6 +107,7 @@ common = { pname, version, sha512 }: stdenv.mkDerivation rec {
     ''
       wrapProgram "$out/bin/firefox" \
         --argv0 "$out/bin/.firefox-wrapped" \
+        --prefix LD_LIBRARY_PATH : "${libnotify}/lib" \
         --prefix XDG_DATA_DIRS : "$GSETTINGS_SCHEMAS_PATH:" \
         --suffix XDG_DATA_DIRS : "$XDG_ICON_DIRS"
     '' +

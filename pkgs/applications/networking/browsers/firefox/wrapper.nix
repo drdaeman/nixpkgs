@@ -1,4 +1,4 @@
-{ stdenv, lib, makeDesktopItem, makeWrapper, config
+{ stdenv, lib, makeDesktopItem, makeWrapper, config, libnotify
 
 ## various stuff that can be plugged in
 , gnash, flashplayer, hal-flash
@@ -50,7 +50,7 @@ let
      );
   libs = (if ffmpegSupport then [ ffmpeg ] else with gst_all; [ gstreamer gst-plugins-base ])
          ++ lib.optionals (cfg.enableQuakeLive or false)
-         (with xorg; [ stdenv.cc libX11 libXxf86dga libXxf86vm libXext libXt alsaLib zlib ])
+         (with xorg; [ stdenv.cc libX11 libXxf86dga libXxf86vm libXext libXt alsaLib zlib libnotify ])
          ++ lib.optional (enableAdobeFlash && (cfg.enableAdobeFlashDRM or false)) hal-flash
          ++ lib.optional (config.pulseaudio or false) libpulseaudio;
   gst-plugins = with gst_all; [ gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-ffmpeg ];
