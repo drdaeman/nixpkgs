@@ -6,7 +6,7 @@
 with stdenv.lib;
 
 stdenv.mkDerivation rec {
-  name = "keepassx-community-${version}";
+  name = "keepassxc-${version}";
   version = "2.2.4";
 
   src = fetchFromGitHub {
