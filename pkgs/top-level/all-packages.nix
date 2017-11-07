@@ -12191,6 +12191,8 @@ with pkgs;
 
   kbdlight = callPackage ../os-specific/linux/kbdlight { };
 
+  k380-conf = callPackage ../os-specific/linux/k380-conf { };
+
   kmscon = callPackage ../os-specific/linux/kmscon { };
 
   kmscube = callPackage ../os-specific/linux/kmscube { };
